@@ -178,4 +178,17 @@ public class RegionsTest {
         assertTrue("URLs do not match.", expectedUrl.equals(actualUrl));
     }
     
+    @Test
+    public void testCategoriesLinkRedirect() {
+        regionsPage.clickOnCategoriesNavLink();
+        
+        String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
+        String actualUrl = driver.getCurrentUrl();
+        assertTrue("URLs do not match.", expectedUrl.equals(actualUrl));
+        
+        String expectedPanelTitle = "Categories";
+        String actualPanelTitle = regionsPage.getPanelHeadingText();
+        assertTrue("Panel title is bad.", actualPanelTitle.startsWith(expectedPanelTitle));
+    }
+    
 }

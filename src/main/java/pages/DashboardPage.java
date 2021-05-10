@@ -12,7 +12,6 @@ public class DashboardPage {
     private By portalsLinkLocator = By.linkText("Portals");
     private By signaturesLinkLocator = By.linkText("Signatures");
     private By sourcesLinkLocator = By.linkText("Sources");
-    private By brzeVestiLinkLocator = By.linkText("Brze Vesti");
     private By panelHeadingLocator = By.className("panel-heading");
     private By addNewSourceButtonLocator = By.className("pull-right");
    
@@ -44,10 +43,6 @@ public class DashboardPage {
         driver.findElement(sourcesLinkLocator).click();
     }
     
-    public void clickOnBrzeVestiNavlink() {
-        driver.findElement(brzeVestiLinkLocator).click();
-    }
-    
     public String getPanelHeadingText(){
         return driver.findElement(panelHeadingLocator).getText();
     }
@@ -55,4 +50,5 @@ public class DashboardPage {
     public String getButtonNameFromPanel(){
         return driver.findElement(addNewSourceButtonLocator).getText();
     }
+    
 }

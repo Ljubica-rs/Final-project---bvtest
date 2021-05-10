@@ -23,6 +23,7 @@ public class RegionsPage {
     private By statusOfFirstRegionLocator = By.xpath("//*[@id=\"regionsTable\"]/tbody/tr[1]/td[4]/span");
     private By titleForThirdRegionLocator = By.xpath("//*[@id=\"regionsTable\"]/tbody/tr[3]/td[3]");
     private By editButtonForThirdRegionLocator = By.xpath("//*[@id=\"regionsTable\"]/tbody/tr[3]/td[5]/div/a/span");
+    private By categoriesLinkLocator = By.linkText("Categories");
     
     public RegionsPage(WebDriver driver) {
         this.driver = driver;
@@ -97,6 +98,10 @@ public class RegionsPage {
     
     public void clearTitleField(){
         driver.findElement(titleFieldLocator).clear();
+    }
+    
+    public void clickOnCategoriesNavLink() {
+        driver.findElement(categoriesLinkLocator).click();
     }
 }
 
