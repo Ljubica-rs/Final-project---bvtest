@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.DashboardPage;
@@ -128,7 +127,7 @@ public class PortalsTest {
         
         String newPortalTitle = portalsPage.getTitleText();
         String expectedAlertMessage = "Portal \"" + newPortalTitle + "\" has been successfully saved!";
-        String actualAlertMessage = driver.findElement(By.className("alert-success")).getText();
+        String actualAlertMessage = portalsPage.getActualAlertMessage();
         assertTrue("Alert message is not correct.", expectedAlertMessage.equals(actualAlertMessage));
         
         String expectedUrl = "http://bvtest.school.cubes.rs/admin/portals";

@@ -7,17 +7,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.LoginPage;
+import pages.Logout;
 
 
 public class LoginTest {
     private static WebDriver driver;
     private static WebDriverWait wait;
+    //private static LoginPage loginPage;
     
     public LoginTest() {
     }
@@ -52,14 +52,17 @@ public class LoginTest {
         
         String expectedUrl = "http://bvtest.school.cubes.rs/admin";
         String actualUrl = driver.getCurrentUrl();
-        
         assertTrue("Bad URL redirection.", expectedUrl.equals(actualUrl));
         
-        WebElement navDropDownButton = driver.findElement(By.className("dropdown-toggle"));
-        navDropDownButton.click();
+        Logout logout = new Logout(driver);
+        logout.clickOnNavDropDownButton();
+        logout.clickOnLogoutButton();
         
-        WebElement logoutButton = driver.findElement(By.linkText("Logout"));
-        logoutButton.click();
+        //WebElement navDropDownButton = driver.findElement(By.className("dropdown-toggle"));
+       // navDropDownButton.click();
+        
+       // WebElement logoutButton = driver.findElement(By.linkText("Logout"));
+       // logoutButton.click();
     }
     
     @Test
