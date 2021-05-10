@@ -86,13 +86,13 @@ public class CategoriesTest {
     public void testElementsPresent() {
         String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
         String actualUrl = driver.getCurrentUrl();
-        
         assertTrue("URLs do not match.", expectedUrl.equals(actualUrl));
         
         String expectedPanelTitle = "Categories";
         String actualPanelTitle = categoriesPage.getPanelHeadingText();
-        //System.out.println("driver.findElement(By.className(\"panel-heading\")).getText()");
         assertTrue("Panel title is bad.", actualPanelTitle.startsWith(expectedPanelTitle));
+        
+        //System.out.println("driver.findElement(By.className(\"panel-heading\")).getText()");
     }
     
     @Test
@@ -110,28 +110,32 @@ public class CategoriesTest {
         // - user is redirected to categories page 
         // - confirmation message is shown: "Category "title" has been successfully saved"
         // - new category is liste as the last element in table 
-        
-        categoriesPage.clickOnAddNewCategoryButton();  
+         
         //WebElement addNewCategoryButton = driver.findElement(By.className("pull-right"));
         //addNewCategoryButton.click();
         
-        WebElement titleField = driver.findElement(By.id("title"));
-        String newCategoryTitle = Helper.generateTitle();
-        titleField.sendKeys(newCategoryTitle);
+        categoriesPage.clickOnAddNewCategoryButton(); 
+        categoriesPage.inputTitleText();
+        String newCategoryTitle = categoriesPage.getTitleText();
+        categoriesPage.clickOnSaveButton();
         
-        WebElement saveButton = driver.findElement(By.id("save-category-button"));
-        saveButton.click();
+        //WebElement titleField = driver.findElement(By.id("title"));
+       // String newCategoryTitle = Helper.generateTitle();
+       // titleField.sendKeys(newCategoryTitle);
+        
+       // WebElement saveButton = driver.findElement(By.id("save-category-button"));
+       // saveButton.click();
         
         String expectedAlertMessage = "Category \"" + newCategoryTitle + "\" has been successfully saved!";
-        String actualAlertMessage = driver.findElement(By.className("alert-success")).getText();
-        
+        String actualAlertMessage = categoriesPage.getActualAlertMessage();
         assertTrue("Alert message is not correct.", expectedAlertMessage.equals(actualAlertMessage));
+        
+        //String actualAlertMessage = driver.findElement(By.className("alert-success")).getText();
+        
         
         String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
         String actualUrl = driver.getCurrentUrl();
-        
         assertTrue("URLs do not match.", expectedUrl.equals(actualUrl));
-
     }
     
     @Test
@@ -143,17 +147,11 @@ public class CategoriesTest {
        // WebElement addNewCategoryButton = driver.findElement(By.className("pull-right"));
         //addNewCategoryButton.click();
         categoriesPage.clickOnAddNewCategoryButton();
-        
-        WebElement titleField = driver.findElement(By.id("title"));
-        String newCategoryTitle = Helper.generateTitle();
-        titleField.sendKeys(newCategoryTitle);
-        
-        WebElement backButton = driver.findElement(By.id("back-button"));
-        backButton.click();
+        categoriesPage.inputTitleText();
+        categoriesPage.clickOnBackToCategoriesButton();
         
         String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
         String actualUrl = driver.getCurrentUrl();
-        
         assertTrue("URLs do not match.", expectedUrl.equals(actualUrl));
     }
 }
